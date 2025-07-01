@@ -16,7 +16,7 @@ export type HeroBlockProps = {
 
 export type LayoutBlock = {
   id: string;
-  type: 'hero' | 'two-column' | 'image-grid';
+  type: 'hero' | 'twoColumn' | 'imageGrid';
   props: HeroBlockProps | TwoColumnBlockProps | ImageGridBlockProps;
 };
 

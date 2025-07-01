@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-export type BlockType = 'hero' | 'two-column' | 'image-grid';
+export type BlockType = 'hero' | 'twoColumn' | 'imageGrid';
 
 export interface LayoutBlock {
   id: string;

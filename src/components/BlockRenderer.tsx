@@ -11,9 +11,9 @@ export const BlockRenderer = ({ block }: BlockRendererProps) => {
   switch (block.type) {
     case 'hero':
       return <HeroBlock {...block.props} />;
-    case 'two-column':
+    case 'twoColumn':
       return <TwoColumnBlock {...block.props} />;
-    case 'image-grid':
+    case 'imageGrid':
       return <ImageGridBlock {...block.props} />;
     default:
       return <div>Unknown block: {block.type}</div>;

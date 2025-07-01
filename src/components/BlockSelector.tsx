@@ -4,7 +4,7 @@ import { addBlock } from '../redux/layoutSlice';
 import type { AppDispatch } from '../redux/store';
 import "./block-selector.css"
 
-export type BlockType = 'hero' | 'two-column' | 'image-grid';
+export type BlockType = 'hero' | 'twoColumn' | 'imageGrid';
 
 export type LayoutBlock = {
   id: string;
@@ -14,8 +14,8 @@ export type LayoutBlock = {
 
 const BLOCK_TYPES: { type: BlockType; label: string }[] = [
   { type: 'hero', label: 'Hero Block' },
-  { type: 'two-column', label: 'Two Column Row' },
-  { type: 'image-grid', label: '2x2 Image Grid' },
+  { type: 'twoColumn', label: 'Two Column Row' },
+  { type: 'imageGrid', label: '2x2 Image Grid' },
 ];
 
 const createBlock = (type: BlockType): LayoutBlock => ({
