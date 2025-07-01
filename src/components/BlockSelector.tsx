@@ -33,7 +33,7 @@ export const BlockSelector = () => {
 
   return (
     <div>
-      <h3 style={{ marginBottom: "0.5rem", color: "#e0f7fa" }}>Manage Blocks</h3>
+      <h3 style={{ marginBottom: "0.5rem", color: "#333" }}>Add Blocks</h3>
       <ul className="block-controls">
         {BLOCK_TYPES.map((block) => (
           <li key={block.type}>

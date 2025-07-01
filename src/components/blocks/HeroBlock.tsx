@@ -39,13 +39,17 @@ export const HeroBlock = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '1.2rem',
+            fontSize: '1.8rem',
             fontWeight: 'bold',
-            color: '#555',
+            color: '#999',
             pointerEvents: 'none',
           }}
         >
-          Background Image Not Set
+          <div style={{
+            marginTop: "6rem"
+          }}>
+            Background Image
+          </div>
         </div>
       )}
 
