@@ -152,31 +152,31 @@ export const Builder = ({ sdk }: BuilderProps) => {
         >
           Redo
         </button>
-        {sdk.entry.fields.slug?.getValue() && (
-          <button
-            onClick={() => {
-              const slug = sdk.entry.fields.slug.getValue();
-              const url = `https://landing-frontend-sigma-seven.vercel.app/${slug}`;
-              window.open(url, '_blank');
-            }}
-            style={{
-              padding: '0.5rem 1rem',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              background: '#fff',
-              color: '#333',
-              fontWeight: 500,
-              cursor: 'pointer',
-            }}
-            title={
-              sdk.entry.fields.slug?.getValue()
-                ? 'View landing page'
-                : 'Fill necessary fields to preview'
-            }
-          >
-            🔍 Preview {sdk.entry.fields.title?.getValue() ? `“${sdk.entry.fields.title.getValue()}”` : ''}
-          </button>
-        )}
+        <button
+          disabled={!sdk.entry.fields.slug.getValue()}
+          onClick={() => {
+            const slug = sdk.entry.fields.slug.getValue();
+            const url = `https://landing-frontend-sigma-seven.vercel.app/${slug}`;
+            window.open(url, '_blank');
+          }}
+          style={{
+            padding: '0.5rem 1rem',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            background: '#fff',
+            color: '#333',
+            fontWeight: 500,
+            cursor: sdk.entry.fields.slug.getValue() ? 'pointer' : 'not-allowed',
+            marginLeft: '8px'
+          }}
+          title={
+            sdk.entry.fields.slug?.getValue()
+              ? 'View landing page'
+              : 'Fill necessary fields to preview'
+          }
+        >
+          Preview
+        </button>
       </div>
 
       <div className="block-list">
