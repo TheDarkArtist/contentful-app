@@ -1,0 +1,11 @@
+{
+  "extension": {
+    "name": "Landing Page Builder",
+    "fieldTypes": [
+      {
+        "type": "Object"
+      }
+    ],
+    "src": "https://contentful-app-eta.vercel.app/"
+  }
+}
