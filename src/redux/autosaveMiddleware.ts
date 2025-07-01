@@ -38,7 +38,6 @@ export const autosaveMiddleware: Middleware<unknown, RootState, Dispatch<Unknown
     ] as const;
 
     if (isActionWithType(action) && autosavableActions.includes(action.type as typeof autosavableActions[number])) {
-      // Clear existing timeout to debounce saves
       if (timeout) {
         clearTimeout(timeout);
       }
@@ -54,7 +53,6 @@ export const autosaveMiddleware: Middleware<unknown, RootState, Dispatch<Unknown
 
           const state = store.getState();
 
-          // Check if layout exists in state
           if (!state.layout) {
             console.warn('[autosave] Layout state not found');
             return;
@@ -62,7 +60,6 @@ export const autosaveMiddleware: Middleware<unknown, RootState, Dispatch<Unknown
 
           const blocks = state.layout.blocks;
 
-          // Check if layoutConfig field exists and setValue method is available
           const layoutField = sdk.entry.fields.layoutConfig;
           if (layoutField && 'setValue' in layoutField && typeof layoutField.setValue === 'function') {
             await layoutField.setValue(blocks);

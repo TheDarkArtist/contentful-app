@@ -20,10 +20,8 @@ export const Builder = ({ sdk }: BuilderProps) => {
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Use ref to track if we're currently saving to prevent loops
   const isSavingRef = useRef(false);
 
-  // Load initial layout from Contentful
   useEffect(() => {
     const loadInitialLayout = async () => {
       try {
@@ -51,7 +49,6 @@ export const Builder = ({ sdk }: BuilderProps) => {
     loadInitialLayout();
   }, [sdk, dispatch]);
 
-  // Save layout to Contentful when it changes (but not during initial load)
   useEffect(() => {
     if (!isInitialized || isSavingRef.current) {
       return;
@@ -73,7 +70,6 @@ export const Builder = ({ sdk }: BuilderProps) => {
       }
     };
 
-    // Debounce the save operation
     const timeoutId = setTimeout(saveLayout, 500);
     return () => clearTimeout(timeoutId);
   }, [layout, sdk, isInitialized]);
@@ -82,7 +78,6 @@ export const Builder = ({ sdk }: BuilderProps) => {
     setDraggedIndex(index);
     e.dataTransfer.effectAllowed = 'move';
 
-    // Add some visual feedback
     e.currentTarget.style.opacity = '0.5';
   };
 

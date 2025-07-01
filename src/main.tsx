@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { init, type KnownAppSDK } from '@contentful/app-sdk';
-import './index.css';
 
 init((sdk: KnownAppSDK) => {
   try {

@@ -3,7 +3,7 @@ type ImageGridBlockProps = {
 };
 
 export const ImageGridBlock = ({ images = [] }: ImageGridBlockProps) => {
-  const safeImages = images.slice(0, 4); // Max 4
+  const safeImages = images.slice(0, 4);
 
   return (
     <div

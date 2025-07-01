@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { addBlock } from '../redux/layoutSlice';
 import type { AppDispatch } from '../redux/store';
+import "./block-selector.css"
 
 export type BlockType = 'hero' | 'two-column' | 'image-grid';
 
@@ -31,12 +32,14 @@ export const BlockSelector = () => {
   };
 
   return (
-    <div className="block-selector">
-      <h3>Add a Block</h3>
-      <ul>
+    <div>
+      <h3 style={{ marginBottom: "0.5rem", color: "#e0f7fa" }}>Manage Blocks</h3>
+      <ul className="block-controls">
         {BLOCK_TYPES.map((block) => (
           <li key={block.type}>
-            <button onClick={() => handleAdd(block.type)}>{block.label}</button>
+            <button className="block-btn" onClick={() => handleAdd(block.type)}>
+              {block.label}
+            </button>
           </li>
         ))}
       </ul>

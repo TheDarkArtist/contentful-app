@@ -15,16 +15,13 @@ function isEditorAppSDK(sdk: KnownAppSDK): sdk is EditorAppSDK {
 
 export default function App({ sdk }: AppProps) {
   useEffect(() => {
-    // Auto-resize the app if supported
     if ('window' in sdk && sdk.window && 'startAutoResizer' in sdk.window) {
       sdk.window.startAutoResizer();
     }
 
-    // Make SDK available globally for middleware
     window.contentfulSDK = sdk;
   }, [sdk]);
 
-  // Check if this is an editor app context
   if (!isEditorAppSDK(sdk)) {
     return (
       <div style={{

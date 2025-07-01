@@ -1,0 +1,30 @@
+.block-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  list-style: none;
+}
+
+.block-controls li {
+  margin: 0;
+}
+
+.block-btn {
+  background-color: #1e1e1e;
+  color: #00e5ff;
+  border: 1px solid #333;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.block-btn:hover {
+  background-color: #272727;
+  transform: scale(1.03);
+  border-color: #00e5ff;
+}
