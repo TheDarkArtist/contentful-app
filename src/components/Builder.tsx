@@ -5,6 +5,7 @@ import { moveBlock, undo, redo, setLayout } from '../redux/layoutSlice';
 import { BlockRenderer } from './BlockRenderer';
 import { BlockSelector } from './BlockSelector';
 import type { KnownAppSDK } from 'contentful-ui-extensions-sdk';
+import type { LayoutBlock } from '../types/types';
 
 type BuilderProps = {
   sdk: KnownAppSDK;
@@ -51,6 +52,30 @@ export const Builder = ({ sdk }: BuilderProps) => {
 
     loadInitialLayout();
   }, [sdk, dispatch]);
+
+  useEffect(() => {
+    const loadOrInitializeLayout = async () => {
+      if (isFieldCapableSDK(sdk)) {
+        const saved = await sdk.field.getValue();
+        if (Array.isArray(saved)) {
+          dispatch(setLayout(saved));
+          console.info('[builder] loaded layout from Contentful');
+        } else {
+          const defaultConfig: LayoutBlock[] = [
+            { id: 'hero-1', type: 'hero', props: {} },
+            { id: 'two-col-1', type: 'two-column', props: {} },
+            { id: 'img-grid-1', type: 'image-grid', props: {} },
+          ];
+          dispatch(setLayout(defaultConfig));
+          await sdk.field.setValue(defaultConfig);
+          console.info('[builder] initialized layoutConfig with default blocks');
+        }
+      }
+    };
+
+    loadOrInitializeLayout();
+  }, [sdk, dispatch]);
+
 
   useEffect(() => {
     if (isFieldCapableSDK(sdk)) {
