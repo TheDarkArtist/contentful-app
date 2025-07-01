@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '../redux/store';
-import { moveBlock, undo, redo, setLayout } from '../redux/layoutSlice';
+import { moveBlock, undo, redo, setLayout, removeBlock } from '../redux/layoutSlice';
 import { BlockRenderer } from './BlockRenderer';
 import { BlockSelector } from './BlockSelector';
 import type { EditorAppSDK } from '@contentful/app-sdk';
@@ -152,6 +152,31 @@ export const Builder = ({ sdk }: BuilderProps) => {
         >
           Redo
         </button>
+        {sdk.entry.fields.slug?.getValue() && (
+          <button
+            onClick={() => {
+              const slug = sdk.entry.fields.slug.getValue();
+              const url = `https://landing-frontend-sigma-seven.vercel.app/${slug}`;
+              window.open(url, '_blank');
+            }}
+            style={{
+              padding: '0.5rem 1rem',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              background: '#fff',
+              color: '#333',
+              fontWeight: 500,
+              cursor: 'pointer',
+            }}
+            title={
+              sdk.entry.fields.slug?.getValue()
+                ? 'View landing page'
+                : 'Fill necessary fields to preview'
+            }
+          >
+            🔍 Preview {sdk.entry.fields.title?.getValue() ? `“${sdk.entry.fields.title.getValue()}”` : ''}
+          </button>
+        )}
       </div>
 
       <div className="block-list">
@@ -196,7 +221,26 @@ export const Builder = ({ sdk }: BuilderProps) => {
                 color: '#666'
               }}>
                 <span>Block {index + 1}: {block.type}</span>
-                <span style={{ cursor: 'grab' }}>⋮⋮</span>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'cneter',
+                  gap: '4px'
+                }}>
+                  <span style={{ cursor: 'grab' }}>⋮⋮</span>
+                  <button
+                    onClick={() => dispatch(removeBlock(block.id))}
+                    style={{
+                      background: 'transparent',
+                      border: 'none',
+                      color: '#999',
+                      fontSize: '1.1rem',
+                      cursor: 'pointer',
+                    }}
+                    title="Remove Block"
+                  >
+                    ×
+                  </button>
+                </div>
               </div>
               <BlockRenderer block={block} />
             </div>
