@@ -6,6 +6,7 @@
         "type": "Object"
       }
     ],
-    "src": "https://contentful-app-eta.vercel.app/"
+    "src": "https://contentful-app-eta.vercel.app/",
+    "sidebar": false
   }
 }
