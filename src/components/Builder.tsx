@@ -49,6 +49,8 @@ export const Builder = ({ sdk }: BuilderProps) => {
     loadInitialLayout();
   }, [sdk, dispatch]);
 
+  console.log(layout)
+
   useEffect(() => {
     if (!isInitialized || isSavingRef.current) {
       return;
